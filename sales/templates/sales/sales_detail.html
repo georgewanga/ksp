@@ -1,0 +1,9 @@
+{% extends "sales/base.html" %}
+
+{% block sales_body %}
+<h1>{{ object.name }}</h1>
+<p>{{ object.category }}</p>
+<p>Reporter: {{ object.sal_price }}</p>
+<p>Published: {{ object.pub_date|date }}</p>
+<p>Date: {{ now|date }}</p>
+{% endblock sales_body %}

@@ -1,0 +1,8 @@
+{% extends "sales/base.html" %}
+
+{% block sales_body %}
+<form method="post">{% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="Confirm">
+</form>
+{% endblock sales_body %}
