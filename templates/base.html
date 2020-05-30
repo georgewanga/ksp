@@ -1,40 +1,73 @@
 {% load static %}
-<!DOCTYPE html>
+{% static 'images/icons/ksp33_16.png' as favicon %}
+
+<!doctype html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    {% comment %} Required meta tags {% endcomment %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block page_meta %}{% endblock %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    {# Global styles #}
+    {% block site_css %}
+    {% include 'css.html' %}
+    {% endblock %}
 
-    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    {# Page-specific styles #}
+    {% autoescape off %}
+    {% block page_css %}{% endblock %}
+    {% endautoescape %}
 
-    <title>
-        {% block title %}
-        KSP
-        {% endblock title %} |
-        Kopere Stationers & Printers
-    </title>
-    <link rel="icon" href="{% static 'images/icons/ksp33_16.png' %}" type="image/gif" sizes="16x16" />
+    {# Extra header stuff (scripts, styles, metadata, etc) #}
+    {% block extra_head %} {% endblock %}
+
+    <title>{% block title %} Kopere Stationers & Printers {% endblock title %} | K S & P </title>
+
+    <link rel="shortcut icon" href="{{ favicon }}" type="image/gif" sizes="16x16" />
+
 </head>
 
 <body style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
     {% include 'navbar.html' %}
     <div class="container-fluid">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% elif message.tags == 'debug' %}light{% else %}{{message.tags}}{% endif %} text-center lead"
+            role="alert">
+            {{ message.tags }}: {{ message|escape }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {# Page content will go here #}
         {% block body %}
         <h1> No content </h1>
         {% endblock body %}
+
+        {% include 'footer.html' with company_name='Kopere Stationers & Printers' %}
+
+        {# Modal HTML #}
+        {% block modals %} {% endblock %}
     </div>
 
-    <a href="/admin"></a>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'js/jquery-3.5.1.slim.js' %}"></script>
-    <script src="{% static 'js/popper.js' %}"></script>
-    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    {# Global javascript #}
+    {% block site_js %}
+    {% include 'js.html' %}
+    {% endblock %}
+
+    {# Shared data for javascript #}
+    <script>
+    </script>
+
+    {# Page javascript #}
+    {% autoescape off %}
+    {% block page_js %} {% endblock %}
+    {% endautoescape %}
 </body>
 
 </html>

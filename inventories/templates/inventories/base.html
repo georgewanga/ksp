@@ -1,7 +1,20 @@
-{% extends "base.html" %} {% load static %}
+{% extends "base.html" %}
+{% load static %}
+{% url 'inventories:create' as add_product %}
 
 {% block body %}
-<h1 class=" card p-2 my-4">Products</h1>
+<div class=" card p-2 my-4">
+    <div class="row">
+        <div class="col my-auto">
+            <h1>Products</h1>
+        </div>
+        <div class="col my-auto">
+            <a class="btn btn-block btn-outline-primary" href="{% url 'inventories:create' %}">
+                <span class="lead"> Add Product </span>
+            </a>
+        </div>
+    </div>
+</div>
 {% block products_body %}
 No Content
 {% endblock products_body %}

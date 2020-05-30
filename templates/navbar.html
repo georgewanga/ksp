@@ -19,14 +19,29 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ inventories }}"> Products <span class="sr-only">(current)</span></a>
+            <li class="nav-item {% if request.path == inventories %} active {% endif %}">
+                <a class="nav-link" href="{{ inventories }}">
+                    Products
+                    {% if request.path == inventories %}
+                    <span class="sr-only">(current)</span>
+                    {% endif %}
+                </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ services }}"> Services </a>
+            <li class="nav-item {% if request.path == services %} active {% endif %}">
+                <a class="nav-link" href="{{ services }}">
+                    Services
+                    {% if request.path == services %}
+                    <span class="sr-only">(current)</span>
+                    {% endif %}
+                </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ sales }}"> Sales </a>
+            <li class="nav-item {% if request.path == sales %} active {% endif %}">
+                <a class="nav-link" href="{{ sales }}">
+                    Sales
+                    {% if request.path == sales %}
+                    <span class="sr-only">(current)</span>
+                    {% endif %}
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/admin"> Admin </a>

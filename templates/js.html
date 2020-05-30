@@ -1,0 +1,13 @@
+{% load static %}
+{% static 'js/jquery-3.5.1.slim.js' as slim %}
+{% static 'js/popper.js' as popper %}
+{% static 'js/bootstrap.js' as bootstrap %}
+{% static 'js/app.js' as app %}
+
+
+<script src="{{ slim }}"></script>
+<script src="{{ popper }}"></script>
+<script src="{{ bootstrap }}"></script>
+
+{% comment %} Custom JS {% endcomment %}
+<script src="{{ app }}"></script>
